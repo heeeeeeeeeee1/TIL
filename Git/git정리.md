@@ -25,8 +25,9 @@
     * 실제 버전 관리 내용이 저장되는 영역
     * `git log` 이용 하여 commit 이력을 확인할 수 있음
 
-*`git add 파일명`
+* `git add 파일명`
     * Workind Directory => Staging Area로 파일을 이동시키는 명령어
+
     * `git add .` : 현재 폴더의 모든 하일과 폴더를 Staging Area로 이동시킬 수 있음
         * 주의 : 버전 관리가 필요없는 파일이나 폴더가 같이 올라갈 가능성이 있어 반드시 Staging Area를 확인해야함
 
