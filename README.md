@@ -8,5 +8,5 @@
     - [Git 추가 내용](./Git/git추가정리.md)
 
 * Python basic
-    - [python 기초](./Python%20basic/python%20기초.md)
-    - [데이터 유형](./Python%20basic/데이터%20유형.md)
+    - [Python 기초](./Python_Basic/Python기초.md)
+    - [데이터 유형](./Python_Basic/데이터유형.md)
