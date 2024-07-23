@@ -10,3 +10,6 @@
 * Python basic
     - [Python 기초](./Python_Basic/Python기초.md)
     - [데이터 유형](./Python_Basic/데이터유형.md)
+
+* Algorithm
+    -
