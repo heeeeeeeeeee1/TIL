@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be91d826-6f0c-4e0e-8fa8-e1ccc2edd71b" name="Default Changelist" comment="" />
+    <list default="true" id="be91d826-6f0c-4e0e-8fa8-e1ccc2edd71b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/1979_어디에_단어가_들어갈_수_있을까.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,5 +32,8 @@
       <updated>1723792477975</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
