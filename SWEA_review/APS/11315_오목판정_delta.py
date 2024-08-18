@@ -10,12 +10,12 @@ def solve():
                     nr = r + dr * mul  # next row
                     nc = c + dc * mul  # next column
                     if 0 <= nr < N and 0 <= nc < N and arr[nr][nc] == 'o':  # 범위 내에 있고 arr배열에 돌 있으면
-                        pass  # 성공(돌 있으면 같은 방향의 옆칸(*mul)도 검사)
+                        pass      # 성공(돌 있으면 같은 방향의 옆칸(*mul)도 검사)
                     else:
-                        break  # 실패(반복문 탈출)
+                        break     # 실패(반복문 탈출)
                 else:
                     return 'YES'  # 돌 5개(arr[r][c]:내위치 포함) 있으면 YES
-    return 'NO'  # 다 순회했는데 해당안되면 NO
+    return 'NO'                   # 다 순회했는데 해당안되면 NO
 
 
 T = int(input())        # 테스트 케이스
