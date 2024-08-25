@@ -16,6 +16,7 @@ for tc in range(1, T+1):
             else:               # 0이면
                 if cnt == K:    # 이전까지 카운팅한 1이 K랑 같은지 확인
                     result += 1 # 같으면 result +1
+                    cnt = 0
 
                 # 다르면 딱히 뭐 할거 없지 않나, 계속 순회하면되지
                 else:
@@ -35,6 +36,7 @@ for tc in range(1, T+1):
             else:   # 0이면
                 if cnt == K:
                     result += 1
+                    cnt = 0
                 else:
                     cnt = 0
         else:
