@@ -10,7 +10,8 @@ for num in range(1,N+1):
     else:
         result = num
 
-    print(''.join(result), end = ' ')
+    # print(''.join(result),end = ' ')
+    print(result,end = ' ') # 위 처럼 할 필요없었다.
 
 
 '''
