@@ -8,7 +8,7 @@ for tc in range(1,T+1):
 
     k = 1
     while True:
-        temp = list(str(k * N))    #
+        temp = list(str(k * N))
 
         num = []
         for t in temp:  # 인덱스로 사용할거니까 다시 정수로 변환
@@ -32,10 +32,13 @@ for tc in range(1,T+1):
         else:
             k += 1
 
-    print(f'#{tc} {k}')
+    print(f'#{tc} {k*N}')
 
 
 '''
 리뷰
 1. 디버깅에 손이 안간다
+2. 2시간동안 못풀었음^^;
+2-1. 알고보니 print(f'#{tc} {k*N}')로 안하고 print(f'#{tc} {k}')로 해서 틀렸음^^;
+2-2. 문해력 이슈
 '''
