@@ -10,3 +10,8 @@ while len(q) != 1:
     q.append(q.popleft())
 
 print(*q)
+
+'''
+리뷰
+1. deque 처음 써봄
+'''
