@@ -16,7 +16,7 @@ def DFS(node):
 V, E = map(int, input().split())
 
 # 1. 인접리스트 만들기
-adjL = [[]*(V+1) for _ in range(V+1)]
+adjL = [[] for _ in range(V+1)]
 
 # 2. 방문 기록증 만들기
 visited = [0] * (V+1)
