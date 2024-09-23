@@ -32,7 +32,7 @@ def BFS(node):
 V, E = map(int,input().split())
 
 # 인접리스트 만들기
-adjL = [[]*(V+1) for _ in range(V+1)]
+adjL = [[] for _ in range(V+1)]
 
 # 방문기록증 만들기
 visited = [0]*(V+1)
