@@ -34,4 +34,8 @@ print(cnt)
 2-1. cnt 구하기 위한  if not visited 조건은 새로운 탐색 시작을 위한
 2-2. 즉, 연결된 요소이면 한번만 카운트 해야하는데 if not visited가 없으면 방문 처리 한 요소도 탐색하게 됨 => cnt 더 셈
 3. 재귀 호출 깊이 지정하기...
+4. 이 부분 없어서 계속 런타임 오류, 시간초과
+import sys
+sys.setrecursionlimit(10**6)
+input = sys.stdin.readline  # 입력 속도 개선
 '''
