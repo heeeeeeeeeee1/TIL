@@ -2,13 +2,7 @@ import "./App.css";
 import Header from "../components/Header";
 import Editor from "../components/Editor";
 import List from "../components/List";
-import {
-  useState,
-  useRef,
-  useReducer,
-  useCallback,
-  createContext,
-} from "react";
+import { useState, useRef, useReducer, useCallback } from "react";
 // import Exam from '../components/Exam'
 
 // App 내부에 있으면 리렌더링될때마다 반복되므로 외부에 선언
@@ -45,9 +39,6 @@ function reducer(state, action) {
       return state.filter((item) => item.id !== action.targetId);
   }
 }
-// App 안에 있으면 리렌더링 될때마다 다시 생성되므로 보통 컴포넌트 외부에 작성
-export const TodoContext = createContext();
-// Provider : Context가 공급할 데이터를 설정하거나, Context에 데이터를 공급받을 컴포넌트들을 설정하기 위한 property///컴포넌트임
 
 function App() {
   // 각각의 todo를 객체형태로 배열 안에 넣기
@@ -103,14 +94,10 @@ function App() {
     <div className="App">
       {/* <Exam /> */}
       <Header />
-
-      {/* 겍체로 묶어서 전달 */}
-      <TodoContext.Provider value={{todos, onCreate, onUpdate, onDelete}}>
-        {/* props로 onCreate 전달 */}
-        <Editor />
-        {/* props로 todos 전달 */}
-        <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
-      </TodoContext.Provider>
+      {/* props로 onCreate 전달 */}
+      <Editor onCreate={onCreate} />
+      {/* props로 todos 전달 */}
+      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   );
 }
