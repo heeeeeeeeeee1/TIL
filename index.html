@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How are you feeling today?</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <script src="js/background.js"></script>
+  <main>
+    <!-- 제목 -->
+    <h2 id="title">How are you feeling today?</h2>
+    
+    <!-- 캐릭터 고르기 -->
+    <div id="characters">
+      <img id="joy" src="./characters/joy.png" alt="joy" data-profile="joy_profile.jpg">
+      <img id="anger" src="./characters/anger.png" alt="anger" data-profile="anger_profile.jpg">
+      <img id="sadness" src="./characters/sadness.png" alt="sadness" data-profile="sadness_profile.jpg">
+      <img id="disgust" src="./characters/disgust.png" alt="disgust" data-profile="disgust_profile.jpg">
+      <img id="fear" src="./characters/fear.png" alt="fear" data-profile="fear_profile.jpg">
+    </div>
+
+    <!-- 로그인 -->
+    <form class="hidden" id="login-form">
+      <input required maxlength="15" type="text" placeholder="Enter your name">
+      <input type="submit" value="Start">
+    </form>
+  </main>
+
+  <section class="profile-container">
+    <!-- 선택한 캐릭터 프로필 -->
+    <div id="profile" class="hidden">
+      <!-- 선택한 캐릭터의 프로필 이미지 -->
+      <img id="profile-image" src="" alt="profile-image">
+      <!-- 사용자가 입력한 이름 -->
+      <h3 id="profile-username"></h3>
+    </div>
+    
+    <!-- todos -->
+    <div id="todo-container" class="hidden">
+      <h4>Todo list</h4>
+      <form id="todo-form">
+        <input type="text" name="todo-input" placeholder="Write a Todo and Press Enter" required>
+      </form>
+      <ul id="todo-list"></ul>
+    </div>
+  </section>
+    
+    
+  <section class="side-bar">
+    <div>
+      <!-- 오늘 날짜 -->
+      <h3 id="today"></h3>
+      <!-- 시계 -->
+      <h3 id="clock"></h3>
+    </div>
+    
+    <!-- 날씨 -->
+    <div id="weather-container">
+      <h3>Today's weather</h3>
+      <p id="location"></p>
+      <p id="weather"></p>
+    </div>
+    
+    <!-- 하단 나가기/로그아웃 버튼 -->
+     <button id="logout" class="hidden">Logout</button>
+  </section>
+
+  <script src="js/todos.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/clock.js"></script>
+  <script src="js/weather.js"></script>
+</body>
+</html>
