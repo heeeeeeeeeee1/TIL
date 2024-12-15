@@ -1,10 +1,17 @@
-const clock = document.querySelector("#clock")
+const now = new Date()
+const year = now.getFullYear()
+const month = now.getMonth()
+const date = now.getDate()
+const today = document.querySelector("#today")
+today.innerText = `${year}년 ${month+1}월 ${date}일`
 
+
+const clock = document.querySelector("#clock")
 const getClock = () => {
-  const date = new Date()
-  const hours = String(date.getHours()).padStart(2, "0")
-  const minutes = String(date.getMinutes()).padStart(2, "0")
-  const seconds = String(date.getSeconds()).padStart(2, "0")
+  const now = new Date()
+  const hours = String(now.getHours()).padStart(2, "0")
+  const minutes = String(now.getMinutes()).padStart(2, "0")
+  const seconds = String(now.getSeconds()).padStart(2, "0")
   clock.innerText = `${hours}:${minutes}:${seconds}`
 }
 
