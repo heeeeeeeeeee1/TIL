@@ -18,15 +18,21 @@ import { getEmotionImage } from "./util/get-emotion-image";
 const mockData = [
   {
     id: 1,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2024-12-16").getTime(),
     emotionId: 1,
     content: '1번 일기 내용',
   },
   {
     id: 2,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2024-11-18").getTime(),
     emotionId: 2,
     content: '2번 일기 내용',
+  },
+  {
+    id: 3,
+    createdDate: new Date("2024-11-01").getTime(),
+    emotionId: 3,
+    content: '3번 일기 내용',
   },
 ]
 
@@ -42,9 +48,9 @@ function reducer(state, action) {
   }
 }
 
-// Context 
-const DiaryStateContext = createContext()
-const DiaryDispatchContext = createContext()
+// Home에서 App의 context 사용용
+export const DiaryStateContext = createContext()
+export const DiaryDispatchContext = createContext()
 
 // 1. "/" : 모든 일기를 조회하는 Home
 // 2. "/new" : 새로운 일기를 작성하는 페이지
