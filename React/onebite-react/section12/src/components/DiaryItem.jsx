@@ -7,7 +7,7 @@ const DiaryItem = () => {
 
   return (
     <div className="DiaryItem">
-      {/* 동적으로 감정 이미지 변경경 */}
+      {/* 동적으로 감정 이미지 변경 */}
       <div className={`img_section img_section_${emotionId}`}>
         <img src={getEmotionImage(1)} />
       </div>
