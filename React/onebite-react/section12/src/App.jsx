@@ -97,7 +97,7 @@ function App() {
   };
   return (
     <>
-    <button onClick={()=>{
+    {/* <button onClick={()=>{
       // 현재시간, 감정번호, 내용
       onCreate(new Date().getTime(), 1,"Hello")
     }}>일기 추가 테스트</button>
@@ -112,7 +112,7 @@ function App() {
       onDelete(1)
     }}>
       일기 삭제 테스트
-    </button>
+    </button> */}
 
       {/* Routes 외부에 있는 요소는 페이지 경로와 상관없이 모든 화면에 렌더링 */}
       {/* <Header
