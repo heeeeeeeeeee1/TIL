@@ -1,6 +1,6 @@
 # 투두리스트 만들기
 
-1. CSS dlsplay: flex 속성이용해서 요소 배치
+1. CSS dlsplay: flex 속성 이용해서 요소 배치
 
 2. 리스트 형태로 렌더링
 
