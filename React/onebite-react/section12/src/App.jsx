@@ -9,43 +9,37 @@ import Notfound from "./pages/Notfound";
 import Button from "./components/Button";
 import Header from "./components/Header";
 
-import { useReducer, useRef, createContext } from 'react'
+import { useReducer, useRef, createContext, useEffect, useState } from 'react'
 
 // 이미지 파일 import 모듈화
 import { getEmotionImage } from "./util/get-emotion-image";
 
-// 일기 작성 페이지 임의 데이터
-const mockData = [
-  {
-    id: 1,
-    createdDate: new Date("2024-12-16").getTime(),
-    emotionId: 1,
-    content: '1번 일기 내용',
-  },
-  {
-    id: 2,
-    createdDate: new Date("2024-11-18").getTime(),
-    emotionId: 2,
-    content: '2번 일기 내용',
-  },
-  {
-    id: 3,
-    createdDate: new Date("2024-11-01").getTime(),
-    emotionId: 3,
-    content: '3번 일기 내용',
-  },
-]
 
 function reducer(state, action) {
+  let nextState
   // action의 type이 CREATE일때
   switch(action.type) {
-    case "CREATE": return [action.data, ...state]
+    case "INIT":
+      return action.data  // action.data는 방금 localStorage에서 불러온 값이므로 바로 return
+    case "CREATE": {
+      nextState = [action.data, ...state]
+      break
+    }
     // item의 id값이 현재 action.data.id와 일치하다면 action.data 반환
     // id 형태가 서로 다를 수 있으므로 방지차원에서 String
-    case "UPDATE": return state.map((item)=>String(item.id) === String(action.data.id) ? action.data : item)
-    case "DELETE": return state.filter((item)=>String(item.id) !== String(action.id))
+    case "UPDATE": {
+      nextState = state.map((item) =>
+        String(item.id) === String(action.data.id) ? action.data : item)
+        break
+    }
+    case "DELETE": {
+      nextState = state.filter((item)=>String(item.id) !== String(action.id))
+      break
+    }
     default: return state
   }
+  localStorage.setItem("diary", JSON.stringify(nextState))
+  return nextState
 }
 
 // Home에서 App의 context 사용용
@@ -58,8 +52,39 @@ export const DiaryDispatchContext = createContext()
 // 4. "/edit" : 일기 수정
 // 리액트에서는 모든 요소가 컴포넌트로 나뉨 -> 페이지도 컴포넌트로 이루어짐
 function App() {
-  const [data, dispatch] = useReducer(reducer, mockData)
-  const idRef = useRef(3) // 생성될 일기의 id 저장. mockData 2까지 있으므로 초기값 3으로 설정정
+  const [isLoading, setIsLoading] = useState(true)  // 로딩
+  const [data, dispatch] = useReducer(reducer, [])
+  const idRef = useRef(0) // 생성될 일기의 id 저장
+
+  // App컴포넌트가 마운트될 때 로컬스토리지에서 데이터 불러오기(data state 초기값으로 설정)
+  useEffect(()=>{
+    const storedData = localStorage.getItem("diary")
+    if(!storedData) {
+      setIsLoading(false)
+      return
+    }
+    const parsedData = JSON.parse(storedData)
+    // parsedData가 배열이 아닐 경우를 염두한 예외처리
+    if (!Array.isArray(parsedData)) {
+      return
+    }
+
+    let maxId = 0
+    parsedData.forEach((item)=>{
+      if(Number(item.id) > maxId) {
+        maxId = Number(item.id)
+      }
+    })
+    
+    idRef.current = maxId + 1 // 새로운 일기 생성될 때 기존 저장되어있던 일기 id와 겹치지 않도록 +1
+
+    dispatch({
+      type:"INIT",
+      data: parsedData,
+    })
+    setIsLoading(false)
+  },[])
+
 
   // 새로운 일기를 추가하는 기능
   const onCreate = (createdDate, emotionId, content) => {
@@ -101,6 +126,12 @@ function App() {
   const onClickButton = () => {
     nav("/new");
   };
+
+  // 로딩이 끝나지 않았을 때 페이지 로딩 안되게 조건 설정
+  if (isLoading) {
+    return <div>데이터 로딩중입니다...</div>
+  }
+
   return (
     <>
     {/* <button onClick={()=>{

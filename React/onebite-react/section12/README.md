@@ -6,7 +6,7 @@
 
 ![페이지 라우팅](image.png)
 
-![페이지 라우팅 원리](image-2.png)
+![페이지 라우팅 원리1](image-2.png)
 
 1. 서버가 사용자에게 제공해야할 모든 html 페이지 가지고 있음
 2. 브라우저에서 페이지 요청
@@ -15,7 +15,7 @@
 - Multi Page Application(MPA) : 전통적인 방식. 애초에 서버가 여러개의 페이지를 가지고 있음
 - Server Side Rendering : 서버측에서 페이지를 미리 렌더링. 완성되어있는 페이지를 응답해줌
 
-  ![alt text](image-3.png)
+  ![페이지 라우팅 원리2](image-3.png)!
   => **쾌적한 페이지 이동 제공이 어렵기 때문에 React.js는 이 방식을 따르지 않음**
 
   이전 페이지를 제거하고 새로운 페이지를 렌더링하는 과정에서 화면 깜빡임(새로고침)
@@ -266,11 +266,64 @@
 </br>
 
 ## 12.16 Diary 페이지 구현
+
 - Diary: Header, Viewer
 - Diary에서 params에 저장된 일기 데이터 불러옴
+
   - 12.15 Edit 페이지에서 동일한 기능 구현
     -> url 파라미터를 통해서 하나의 일기 데이터를 context로부터 꺼내오는 로직을 함수로 구성.
     - React Hook은 일반js 함수로 구성 불가
       -> 커스텀 훅으로 분리
 
-- useDiary
+- 반복 사용되는 코드 모듈화
+
+  - 커스텀 훅 : useDiary
+  - 함수 분리 : get-stringed-date
+
+  </br>
+
+  ## 12.17 웹 스토리지 이용하기
+
+  ### 1. 웹 스토리지(Web Storage)
+
+  - 웹 브라우저에 기본적으로 내장되어 있는 데이터베이스
+  - 우리가 추가한 일기 데이터는 실제로는 React State에 보관됨(js 변수에 저장된 값)
+  - 새로고침하면 state 다시 생성됨(초기화)
+  - cf. SessionStorage와 LocalStorage 차이
+    ![세션, 로컬 스토리지](image-7.png)
+
+  - ```javascript
+    // 데이터 저장
+    // setItem(key, value) 키값은 원시데이터(숫자, 문자)만 가능
+    localStorage.setItem("test", "hello");
+    // 객체를 저장하고 싶다면 JSON.stringify 사용용
+    localStorage.setItem("person", JSON.stringify({ name: "바키" }));
+
+    // 값 불러오기
+    console.log(localStorage.getItem("test"));
+    // 객체가 아닌 객체처럼 생긴 문자열 출력(localStorage는 기본적으로 문자열로 저장됨)
+    console.log(localStorage.getItem("person"));
+
+    // JSON.parse 사용해서 객체로 만들기
+    // JSON.parse는 인수가 undifined일 경우 오류 발생
+    console.log(JSON.parse(localStorage.getItem("person")));
+
+    // 데이터 삭제
+    localStorage.removeItem("test");
+    // 혹은 브라우저 로컬스토리지에서 직접 지우기
+    ```
+  - useEffect를 통해서 App컴포넌트가 마운트 된 이후에 localStorage에서 데이터 불러오고, 불러온 데이터 dispatch 호출해서 data state 세팅
+  - useEffect가 호출되기 전에(dispatch함수가 data state에 일기 데이터를 저장하기 전에) 다른 페이지 컴포넌트들이 미리 렌더링 된다면
+  - 아래와 같이 오류 발생(수정하기, 작성 일기 확인인 페이지에서 새로고침)
+  - useEffect가 완료되기 전에 dispatch가 완료되지 않아서 data state 초기값이 설정되지 않았을 때 Diary에서 하나의 일기 데이터를 불러오는 useDiary 커스텀 훅이 먼저 실행되었기 때문에 오류 발생(useDiary에서 data state가 초기값인 빈배열로 불러와졌기 때문)
+  ![새로고침 오류-edit](image-8.png)
+  ![새로고침 오류-diary](image-9.png)
+
+  `=> 로딩 기능 만들기`
+  </br>
+
+  ### 2. 배포 준비하기
+
+  </br>
+
+  ### 3. 배포하기
