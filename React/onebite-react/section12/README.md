@@ -1,4 +1,7 @@
-# 감정일기장 만들기
+# 감정 일기장 만들기
+### 🙃[바키의 감정 일기장 체험하기](https://emotion-diary-beta-seven.vercel.app/)
+
+</br>
 
 ## 12.2 페이지 라우팅
 
@@ -320,10 +323,56 @@
   ![새로고침 오류-diary](image-9.png)
 
   `=> 로딩 기능 만들기`
-  </br>
 
-  ### 2. 배포 준비하기
+</br>
 
-  </br>
+## 12.18
+### 2. 배포 준비하기
+#### (1) 페이지 타이틀 : 웹 브라우저 탭에 표시되는 페이지의 제목
+  - index.html의 title 수정
+  - React는 SPA 방식으로 동작하기 때문에 페이지가 바뀌어도 타이틀 동일
+  - 페이지별로 타이틀을 바꾸고 싶다면 js로 설정
+#### (2) Favicon : 브라우저 탭에 표시되는 작은 아이콘
+  - index.html link 수정, public 폴더에 해당 이미지 저장
+    ```html
+    <link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
+    ```
+#### (3) 오픈 그래프 : 웹사이트 링크 공유 시 썸네일, 제목 등의 정보를 노출 하는 것
+  - index.html meta 수정, public 폴더에 해당 이미지 저장
+    ```html
+    <meta property="og:title" content="바키의 감정 일기장" />
+    <meta property="og:description" content="나만의 작은 감정 일기장" />
+    <meta property="og:image" content="/thumbnail.png" />
+    ```
+#### (4) 프로젝트 빌드
+  ![빌드](image-10.png)
 
-  ### 3. 배포하기
+</br>
+
+## 12.19
+### 3. 배포하기
+- [vercel](https://vercel.com/) : 프론트엔드 개발자를 위한 클라우드 서비스
+- 회원가입
+- VSCode 터미널에 명령어 입력
+  - 설치
+    ```bash
+    npm install -g vercel
+    ```
+  - 로그인
+    ```bash
+    vercel login
+    ```
+    ![vercel login](image-11.png)
+  
+    ![with github](image-12.png)
+
+    ![result](image-13.png)
+
+
+    ### 트러블 슈팅(미해결)
+    - 배포 후 링크에 따라 썸네일이 보이거나 안보임
+    - 기본 도메인에서는 썸네일 안보임, 커스텀 도메인에서는 썸네일 보임
+    ![카톡 썸네일 안보임](image-14.png)
+    ![vercel 대쉬보드](image-15.png)
+
+    - 이미지 경로를 절대경로로 변경했으나 해결되지 않음

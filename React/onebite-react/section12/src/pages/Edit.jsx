@@ -5,12 +5,15 @@ import Editor from "../components/Editor";
 import { useContext, useEffect, useState } from "react";
 import { DiaryDispatchContext, DiaryStateContext } from "../App";
 import useDiary from "../hooks/useDiary"
+import usePageTitle from "../hooks/usePageTitle"
+
 
 const Edit = () => {
   const params = useParams(); // url 파라미터로 몇번 id의 일기인지 나타남
   const nav = useNavigate();
   const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
-
+  usePageTitle(`${params.id}번 일기 수정`)
+  
   const curDiaryItem = useDiary(params.id)
 
   // hooks/useDiary.jsx로 분리해서 주석처리

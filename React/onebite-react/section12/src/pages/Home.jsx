@@ -6,8 +6,10 @@ import { DiaryStateContext } from "../App";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import DiaryList from "../components/DiaryList";
+import usePageTitle from "../hooks/usePageTitle"
 
-// data에 저장된 일기데이터를 필터링
+
+// data에 저장된 일기 데이터를 필터링
 const getMonthlyData = (pivotDate, data) => {
   // createdDate가 이번달의 시작시간 ~ 끝시간 사이에 있는지 확인
   const beginTime = new Date(pivotDate.getFullYear(), pivotDate.getMonth(),1,0,0,0).getTime() // 연, 월, 1일, 0시, 0분, 0초
@@ -20,6 +22,7 @@ const Home = () => {
   // const [params, setParams] = useSearchParams()
   // 상단 좌우 버튼 누르면 날짜 변경
   const [pivotDate, setPivotDate] = useState(new Date());
+  usePageTitle("바키의 감정 일기장")
 
   const monthlyData = getMonthlyData(pivotDate, data)
 
