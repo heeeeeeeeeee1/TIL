@@ -266,3 +266,11 @@
 </br>
 
 ## 12.16 Diary 페이지 구현
+- Diary: Header, Viewer
+- Diary에서 params에 저장된 일기 데이터 불러옴
+  - 12.15 Edit 페이지에서 동일한 기능 구현
+    -> url 파라미터를 통해서 하나의 일기 데이터를 context로부터 꺼내오는 로직을 함수로 구성.
+    - React Hook은 일반js 함수로 구성 불가
+      -> 커스텀 훅으로 분리
+
+- useDiary

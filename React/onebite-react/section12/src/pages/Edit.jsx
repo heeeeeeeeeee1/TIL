@@ -4,29 +4,35 @@ import Button from "../components/Button";
 import Editor from "../components/Editor";
 import { useContext, useEffect, useState } from "react";
 import { DiaryDispatchContext, DiaryStateContext } from "../App";
+import useDiary from "../hooks/useDiary"
 
 const Edit = () => {
   const params = useParams(); // url 파라미터로 몇번 id의 일기인지 나타남
   const nav = useNavigate();
   const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
-  const data = useContext(DiaryStateContext);
-  const [curDiaryItem, setCurDiaryItem] = useState();
+
+  const curDiaryItem = useDiary(params.id)
+
+  // hooks/useDiary.jsx로 분리해서 주석처리
+  // const data = useContext(DiaryStateContext);
+  // const [curDiaryItem, setCurDiaryItem] = useState();
 
   // params의 id나 data state가 변경될 때, 마운트 될 때 실행
-  useEffect(() => {
-    const currentDiaryItem = data.find(
-      (item) => String(item.id) === String(params.id)
-    );
-    // 데이터 존재하지 않으면
-    if (!currentDiaryItem) {
-      window.alert("존재하지 않는 일기입니다.");
-      nav("/", { replace: true });
-    }
-    // 존재한다면
-    setCurDiaryItem(currentDiaryItem);
-  }, [params.id]);
+  // useEffect(() => {
+  //   const currentDiaryItem = data.find(
+  //     (item) => String(item.id) === String(params.id)
+  //   );
+  //   // 데이터 존재하지 않으면
+  //   if (!currentDiaryItem) {
+  //     window.alert("존재하지 않는 일기입니다.");
+  //     nav("/", { replace: true });
+  //   }
+  //   // 존재한다면
+  //   setCurDiaryItem(currentDiaryItem);
+  // }, [params.id]);
   // },arams.id[params.id, data]) // react-router v7이후이먄 data 삭제
   // -> params.id 값이 변하지 않으면 다시는 호출 되지 않을 것.
+
 
   const onClickDelete = () => {
     // window.confirm : 확인, 취소 버튼 있는 팝업창(확인 클릭 시: true, 취소: false)
