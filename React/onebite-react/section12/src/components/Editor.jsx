@@ -1,7 +1,7 @@
 import "./Editor.css"
 import EmotionItem from "./EmotionItem"
 import Button from "./Button"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 
 const emotionList = [
@@ -43,7 +43,7 @@ const getStringedDate = (targetDate) => {
 }
 
 
-const Editor = ({onSubmit}) => {
+const Editor = ({initData, onSubmit}) => {
   // input state에 날짜, 감정, 일기 저장 -> 여러값을 저장/관리할 때는 객체형태로
   const [input, setInput] = useState({
     createdDate: new Date(),
@@ -52,6 +52,15 @@ const Editor = ({onSubmit}) => {
   })
 
   const nav = useNavigate() // 취소하기 버튼에서 쓸 거
+
+  useEffect(()=>{
+    if (initData) {
+      setInput({
+        ...initData,
+        createdDate: new Date(Number(initData.createdDate)), // 이부분 없이 ...initData로만 작성하면 Date객체가 아닌 타임스탬프(숫자)로 인식?
+      })
+    }
+  },[initData])
   
   const onChangeInput = (e) => {    
     let name = e.target.name
