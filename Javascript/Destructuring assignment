@@ -1,0 +1,108 @@
+## 구조 분해 할당
+* 배열이나 객체의 속성을 분해해서 그 값을 변수에 담을 수 있게 하는 표현식
+
+### 1. 배열 구조 분해
+  - 예시 1
+    ```js
+    let [x, y] = [1, 2]
+
+    console.log(x)  // 1
+    console.log(y)  // 2
+
+    ```
+  - 예시 2
+    ```js
+    let users = ['Mike', 'Tom', 'Jane']
+    let [user1, user2, user3] = users
+
+    // let user1 = users[0]
+    // let user2 = users[1]
+    // let user3 = users[2]
+
+    console.log(user1)  // Mike
+    console.log(user2)  // Tom
+    console.log(user3)  // Jane
+    ```
+  - 예시 3
+    ```js
+    let str = 'Mike-Tom-Jane'
+    let [user1, user2, user3] = str.split('-')
+
+    console.log(user1)  // Mike
+    console.log(user2)  // Tom
+    console.log(user3)  // Jane
+    ```
+  - 예시 4(기본값 설정정)
+    ```js
+    let [a, b, c] = [1, 2]  // c는 undefined
+
+    // 기본값 설정하기기
+    let [a=3, b=4, c=5] = [1,2]
+
+    console.log(a)  // 1
+    console.log(b)  // 2
+    console.log(c)  // 5
+    ```
+  
+  - 예시 5(일부 반환값 무시)
+  ```js
+  let [user1, , user2] = ['Mike', 'Tom', 'Jane','Tony']
+  console.log(user1)  // Mike
+  console.log(user2)  // Jane
+  ```
+
+  - 예시 6(바꿔치기)
+  ```js
+  let a = 1
+  let b = 2
+  
+  // let c = a // a값을 c에 잠시 저장
+  // a = b
+  // b = c
+  // a = 2, b = 1
+
+  // 이렇게 하면 간단하게 구현 가능
+  [a, b] = [b, a]
+  ```
+
+</br>
+
+### 2. 객체 구조 분해
+  - 예시 1
+  ```js
+  let user = {name: 'Mike', age: 30}
+  let {name, age} = user
+  // let {age, name} = user  // 순서 바꿔도 됨
+  // let name = user.name
+  // let age = user.age
+
+  console.log(name) // Mike
+  console.log(name) // 30
+
+
+  // 새로운 변수 이름으로 할당
+  let {name: userName, age:userAge} = user
+  console.log(userName) // Mike
+  console.log(userAge) // 30
+
+  ```
+
+  - 예제 2
+  ```js
+  let user = {name: 'Mike', age: 30}
+  let {name, age, gender} = user
+  // gender: undefined
+
+  ```
+  - 예제 3
+  ```js
+  let user = {
+    name: 'Jane',
+    age: 18,
+    gender:'female'
+  }
+
+  let {name, age, gender = 'male'} = user
+
+  console.log(gender) // female
+  ```
