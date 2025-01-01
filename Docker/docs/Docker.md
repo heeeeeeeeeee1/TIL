@@ -60,3 +60,42 @@
 </br>
 
 - 참고자료 : [드림코딩 : 도커 한방에 정리](https://www.youtube.com/watch?v=LXJhA3VWXFA&t=574s)
+
+
+</br>
+
+## 실습
+
+### 1. node.js로 프로젝트 생성
+```
+# 프로젝트 초기화
+npm intt -y
+
+# 백엔드 생성
+npm i express
+```
+
+### 2. index.js 생성
+
+### 3. dockerfile 만들기
+
+### 4. 빌드
+```
+docker build -f Dockerfile -t fun-docker .
+```
+  - 마지막 `.` : build context(도커에게 필요한 파일의 현재 경로 지정)
+  - `-f` : 어떤 도커파일을 사용할 것인지 명시
+  - `-t` : 이미지에에 이름 부여
+
+  ![정상 빌드](image-9.png)
+  - 정상적으로 빌드 된다면 도커파일에 작성한대로 빌드되는 것을 볼 수 있다.
+
+</br>
+
+#### 💥 트러블 슈팅
+![도커 제대로 설치 안된듯](image-10.png)
+  - 영상을 참고하면서 Ubuntu(리눅스) 환경에서 node.js 프로젝트를 하려고 했는데 원격 설정을 실패해서 리눅스 환경은 잠시 보류하고 Docker Desktop을 설치했다.
+    - 하지만 이마저도 WSL 에러로 도커가 제대로 설치 되지 않음.
+    - 도커가 제대로 설치되지 않았기 때문에 당연히 docker 명령어 사용불가
+    - 아직 이미지 만들지 못한 상태 ㅜ
+![에러](image-11.png)
