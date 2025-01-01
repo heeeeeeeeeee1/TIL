@@ -33,3 +33,27 @@ The I/O cache encountered an error while updating data in medium &quot;ahci-0-0&
 
     => 이 상황에서 도커 다시 설치하면 또 오류 발생할 것 같아서 설치 보류 : 추가 SD카드 구매 후 다시 시도 예정😂(나는 가볍게 한번 써보고 싶었던 것인데... 이렇게 막힐 줄이야)
 
+
+### 3. Ubuntu에 Docker 설치하기
+![alt text](image-8.png)
+![alt text](image-7.png)
+
+</br>
+
+#### 💥 트러블 슈팅
+- 리눅스 환경에서 코드 복사 붙여넣기 안됨
+  - ctrl + shift + c / v로도 해결 불가
+  - 메모장, SubLime Text에 붙여넣기 후 다시 복사, 붙여넣기 시도 해도 안됨
+  - 마우스 우클릭 활용 복사, 붙여넣기 불가
+
+- 해결 방법
+  - VirtualBox에서 장치 > 클립보드 공유 > 양방향 설정(하는 김에 드래그 앤 드롭도 같이 양방향 설정) => 재부팅
+  - 장치 > 게스트 추가 CD 이미지 삽입 선택 (이 부분은 꼭 필요한 옵션인지 모르겠다.)
+    ```bash
+    sudo apt update
+    sudo apt install -y build-essential linux-headers-$(uname -r)
+
+    # 재부팅
+    sudo reboot
+    ```
+
