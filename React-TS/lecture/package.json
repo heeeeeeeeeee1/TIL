@@ -16,7 +16,12 @@
     "typescript": "^5.7.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@types/webpack": "^5.28.5",
+    "babel-loader": "^9.2.1",
+    "fork-ts-checker-webpack-plugin": "^9.0.2",
+    "react-refresh": "^0.16.0",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "webpack": "^5.97.1",

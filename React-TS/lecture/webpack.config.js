@@ -1,7 +1,15 @@
-const path = require('path')
-const webpack = require('webpack')
+import path from 'path'
+import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin'
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
+import { Configuration as WebpackConfiguration } from 'webpack'
+import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server'
 
-module.exports = {
+interface Configuration extends WebpackConfiguration {
+  devServer?: WebpackDevServerConfiguration
+}
+
+const config: Configuration = {
+  name: 'word-relay-dev',
   mode: 'development',
   devtool: 'eval',
   resolve: {
@@ -13,15 +21,26 @@ module.exports = {
   },
   module: {
     rules: [{
+      loader: 'babel-loader',
+      options: { plugins: ['react-refresh/babel']},
+    }, {
       test:/\.tsx?$/,
       loader: 'ts-loader',
-    }]
+      exclude: path.join(__dirname, 'node_modules'),
+    }],
   },
   plugins: [
-
+    new ReactRefreshPlugin(),
+    new ForkTsCheckerWebpackPlugin(),
   ],
   output: {
+    path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    path: path.join(__dirname, 'dist')
-  }
+    publicPath: '/dist/', 
+  },
+  devServer: {
+    devMiddleware: { publicPath: '/dist/'},
+    publicPath: '/dist/',
+    hot: true,
+  },
 }
