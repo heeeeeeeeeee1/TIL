@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["es5", "es2015", "es2016", "es2017", "es2020", "dom"],
+    "jsx": "react"  // 리액트 16 이하의 전통적인 방식으로 컴파일되며, JSX를 React.createElement 호출로 변환함
+  }
+}
+
+// GPT
+// {
+//   "compilerOptions": {
+//     "jsx": "react-jsx",  // 리액트 17+ 버전용
+//     "strict": true,  // 타입 검사 강화
+//     "esModuleInterop": true  // import 방식 호환, 강의에서는 활성화 비추천
+//   }
+// }
