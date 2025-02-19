@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { fetchPosts, deletePost, updatePost } from "./api";
 import { PostDetail } from "./PostDetail";
@@ -13,11 +13,13 @@ export function Posts() {
 
   useEffect(() => {
     if (currentPage < maxPostPage) {
-
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery({ queryKey: ["posts", nextPage], queryFn: () => fetchPosts(nextPage) }); //useQuery에 사용된 것과 같은 형태의 쿼리키
+      queryClient.prefetchQuery({
+        queryKey: ["posts", nextPage],
+        queryFn: () => fetchPosts(nextPage),
+      }); //useQuery에 사용된 것과 같은 형태의 쿼리키
     }
-    }, [currentPage, queryClient]);
+  }, [currentPage, queryClient]);
 
   // useQuery는 옵션 객체를 받는다.
   const { data, isError, error, isLoading } = useQuery({
